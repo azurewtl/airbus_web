@@ -9,13 +9,12 @@ use org\apache\hadoop\WebHDFS;
 class SearchController extends Controller
 {
     public $hosts = [
-        'http://172.16.1.33:9200',
-        'http://172.16.1.34:9200',
-        'http://172.16.1.35:9200',
-        'http://172.16.1.198:9200'
+        'http://172.16.140.94:9200'//,
+        //'http://172.16.140.95:9200',
+        //'http://172.16.140.96:9200'
     ];
 
-    public $hdfs_base = "tmp/AB/pdf/";
+    public $hdfs_base = "tmp/airbus/pdf/pdf";
 
     public $item_per_page = 10;
 
@@ -122,7 +121,7 @@ class SearchController extends Controller
 
         $filename = $response["_source"]["file"]["filename"];
 
-        $hdfs_url = 'http://172.16.1.198:14000/webhdfs/v1/tmp/AB/pdf/'.$filename.'?op=OPEN&user.name=hdfs';
+        $hdfs_url = 'http://172.16.140.94:14000/webhdfs/v1/tmp/airbus/pdf/search/'.$filename.'?op=OPEN&user.name=hdfs';
 
         return redirect()->away($hdfs_url);
     }

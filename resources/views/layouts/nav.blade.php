@@ -11,16 +11,22 @@
 
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
 
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="集群状态">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="文档检索">
           <a class="nav-link" href="/search">
             <i class="fa fa-fw fa-search"></i>
             <span class="nav-link-text">文档检索</span>
           </a>
         </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="数据统计">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="数据可视化">
           <a class="nav-link" href="/search">
             <i class="fa fa-fw fa-area-chart"></i>
             <span class="nav-link-text">数据可视化</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="爬虫数据">
+          <a class="nav-link" href="/table?type=1">
+            <i class="fa fa-fw fa-table"></i>
+            <span class="nav-link-text">爬虫数据</span>
           </a>
         </li>
       </ul>
