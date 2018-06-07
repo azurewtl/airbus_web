@@ -19,3 +19,11 @@ Route::get('/', function () {
 Route::get('/search', 'SearchController@index');
 
 Route::get('/download/{id}', 'SearchController@download');
+
+Route::get('/echarts', 'echartscontroller@test2');
+
+Route::get('/inceptor', 'InceptorController@odbcConnector');
+
+Route::get('/BIcharts', 'InceptorController@echartsViews');
+//Route::post('/odata', 'CunliangController@odata');
+
