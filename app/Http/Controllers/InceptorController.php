@@ -61,11 +61,6 @@ class InceptorController extends Controller
         //return view('BI3')->with('abxc', $result_arr);
     }
 
-    public function echartsViews()
-    {
-      return view ('BI3');
-    }
-
     public function visualzeViews()
     {
       return view ('visualze');

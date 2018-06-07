@@ -5,19 +5,15 @@
 	<div id="chart-1" class="col-md-6 col-xs-12">
 
 	</div>
-	<div id="chart-2" class="col-md-6 col-xs-12">
+	<div id="chart-2" class="col-md-6 col-xs-12" style="height:400px">
 
     </div>
 </div>
+@endsection
 
 
+@section('chartJS')
 
-
-    <script src="/airbus_web/public/vendor/jquery/jquery.min.js"></script>
-    <script src="/airbus_web/public/js/echarts.js"></script>
-    <script src="/airbus_web/public/js/dataTool.min.js"></script>
-    <script src="/airbus_web/public/js/echarts-gl.min.js"></script>
-    <script src="/airbus_web/public/js/ecStat.min.js"></script>
     <script type="text/javascript">
         $(function() {
             
@@ -203,5 +199,4 @@
 
         });
     </script>
-</body>
-</html>
+@endsection
