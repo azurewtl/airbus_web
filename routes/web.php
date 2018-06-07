@@ -35,8 +35,6 @@ Route::get('/echarts', 'echartscontroller@test2');
 
 Route::get('/inceptor', 'InceptorController@odbcConnector');
 
-Route::get('/BIcharts', 'InceptorController@echartsViews');
-
 Route::get('/visualze', 'InceptorController@visualzeViews');
 //Route::post('/odata', 'CunliangController@odata');
 

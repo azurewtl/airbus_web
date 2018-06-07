@@ -65,11 +65,6 @@ class InceptorController extends Controller
     {
       return view ('visualze');
     }
-
-    public function visualzeViews()
-    {
-      return view ('visualze');
-    }
 }
 ?>
 
