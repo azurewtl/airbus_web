@@ -65,6 +65,11 @@ class InceptorController extends Controller
     {
       return view ('BI3');
     }
+
+    public function visualzeViews()
+    {
+      return view ('visualze');
+    }
 }
 ?>
 
