@@ -18,7 +18,7 @@
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="数据可视化">
-          <a class="nav-link" href="/search">
+          <a class="nav-link" href="/visualze">
             <i class="fa fa-fw fa-area-chart"></i>
             <span class="nav-link-text">数据可视化</span>
           </a>
