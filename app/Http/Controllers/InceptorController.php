@@ -12,7 +12,7 @@ class InceptorController extends Controller
   public function odbcConnector()
   {     
         //system DSN as the first parameter
-        $conn = odbc_connect("inceptor_32", "", "");
+        $conn = odbc_connect("inceptor_96", "", "");
         if (!($conn)) {
           echo "<p>Connection to Inceptor via ODBC failed : ";
           echo odbc_errormsg ($conn);

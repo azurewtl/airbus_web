@@ -8,6 +8,14 @@
 	<div id="chart-2" class="col-md-6 col-xs-12" style="height:400px">
 
     </div>
+    
+</div>
+<div class="row">
+
+	<div id="chart-3" class="col-md-12 col-xs-12" style="height:400px">
+
+    </div>
+    
 </div>
 @endsection
 
@@ -199,6 +207,88 @@
                     });
             });
 
-        },3000));
+        },2500));
+
+        $(setTimeout(function() {
+            var query_sql = "SELECT count(ac_cmsn) AS 'number',pel_cplanningeventname,pe_cmanufacturingsite " +
+                        "FROM apc_jaguar_bi_orc WHERE SYSDATE > actual_start_date AND SYSDATE < actual_end_date " +
+                        "GROUP BY pel_cplanningeventname,pe_cmanufacturingsite"
+
+            query_sql = query_sql.replace(new RegExp(' ', 'g'), '%20').replace(new RegExp("'", 'g'), '%27');
+            $.get("../index.php/inceptor?query=" + query_sql,function(response) {
+                var data = response;
+                var query_peName = "select distinct pel_cplanningeventname from (select pel_cplanningeventname,pe_cmanufacturingsite FROM apc_jaguar_bi_orc WHERE SYSDATE > actual_start_date AND SYSDATE < actual_end_date GROUP BY pel_cplanningeventname,pe_cmanufacturingsite)"
+                $.get("../index.php/inceptor?query=" + query_peName,function(response_peName) {
+                    var data_peName = response_peName;
+                    var formated_data = [];
+                    var peName_list = [];
+                    var manufacturing_site_list = [];
+
+                    for(var i = 0;i<data_peName.length;i++){
+                        peName_list.push(data_peName[i].pel_cplanningeventname)
+                    }
+
+                    data.forEach(function(item,index){
+                        if(manufacturing_site_list.indexOf(item['pe_cmanufacturingsite']) == -1){
+                            manufacturing_site_list.push(item['pe_cmanufacturingsite'])
+                        }
+                    })
+                    
+                    formated_data.push(['pel_cplanningeventname'].concat(manufacturing_site_list))
+                    var row_peName = []
+                    for(i=0; i < manufacturing_site_list.length; i++) {
+                        row_peName.push(0)
+                    }
+
+                    peName_list.forEach(function(item, index) {
+                        formated_data.push([item].concat(row_peName))
+                    })
+                        data.forEach(function(item, index) {
+                        var manufacturing_site = item['pe_cmanufacturingsite'];
+                        var peName = item['pel_cplanningeventname'];
+                        row = peName_list.indexOf(peName) + 1;
+                        col = manufacturing_site_list.indexOf(manufacturing_site) + 1;
+                        if(row!=-1&&col!=-1) {
+                            formated_data[row][col] = item['number'];
+                        }
+                    })
+
+                    // 基于准备好的dom，初始化echarts实例
+                    var dom = document.getElementById("chart-3");
+                    myChart3 = echarts.init(dom);
+
+
+                    option3 = {
+                        title: {text: '实时生产状态',bottom:'2%',right:'35%'},
+                        legend: {},
+                        tooltip: {},
+                        dataset: {
+                            source: formated_data
+                        },
+                        xAxis: {data:peName_list},
+                        yAxis: {},
+                        // Declare several bar series, each will be mapped
+                        // to a column of dataset.source by default.
+                        series: [
+                            {type: 'bar',stack:'peName'},
+                            {type: 'bar',stack:'peName'},
+                            {type: 'bar',stack:'peName'},
+                            {type: 'bar',stack:'peName'},
+                            {type: 'bar',stack:'peName'},
+                            {type: 'bar',stack:'peName'},
+                            {type: 'bar',stack:'peName'},
+                            {type: 'bar',stack:'peName'},
+                            {type: 'bar',stack:'peName'}
+
+                        ]
+                    };
+
+                    myChart3.setOption(option3);
+                    window.addEventListener("resize", function(){
+                        myChart3.resize();
+                    });
+                });
+            });
+        },5000));
     </script>
 @endsection
