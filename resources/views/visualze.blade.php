@@ -21,8 +21,8 @@
             var query_sql = "select ac_cserie,actual_start_year,actual_start_month,count(ac_cmsn) as 'number' " +
                         "from apc_jaguar_bi_orc " +
                         "where pel_cplanningeventname='CDF' " +
-                        "and actual_start_date > add_months(sysdate,-6) " +
-                        "and actual_start_date < sysdate " +
+                        "and actual_start_date > add_months(sysdate,-5) " +
+                        "and actual_start_date < add_months(sysdate,1) " +
                         "group by ac_cserie,actual_start_year,actual_start_month"
             query_sql = query_sql.replace(new RegExp(' ', 'g'), '%20').replace(new RegExp("'", 'g'), '%27');
             // query for dataset
@@ -36,7 +36,7 @@
                 //     // query for month_list
                     var data_model = response_model;
                     var query_month = "SELECT concat(cast(actual_start_year AS STRING),'-',cast(actual_start_month AS STRING)) AS year_and_month " +
-                                  "FROM APC_Jaguar_BI_orc WHERE actual_start_date > add_months(SYSDATE,-6) AND actual_start_date <SYSDATE " +
+                                  "FROM APC_Jaguar_BI_orc WHERE actual_start_date > add_months(SYSDATE,-5) AND actual_start_date <add_months(SYSDATE,1) " +
                                   "GROUP BY actual_start_year,actual_start_month ORDER BY actual_start_year,actual_start_month"
                     query_month = query_month.replace(new RegExp(' ', 'g'), '%20').replace(new RegExp("'", 'g'), '%27');
                     $.get("../index.php/inceptor?query=" + query_month,function(response_month) {
@@ -80,6 +80,7 @@
 
 
                             option = {
+                                title: {text: '近六个月开工数量',bottom:'2%',right:'35%'},
                                 legend: {},
                                 tooltip: {},
                                 dataset: {
@@ -107,13 +108,13 @@
 
         });
 
-        $(function() {
+        $(setTimeout(function() {
             
             // read from database
             var query_sql = "select ac_cserie,actual_end_year,actual_end_month,count(ac_cmsn) as 'number' " +
                         "from apc_jaguar_bi_orc " +
                         "where pel_cplanningeventname='HandOver' " +
-                        "and actual_end_date > add_months(sysdate,-6) " +
+                        "and actual_end_date > add_months(sysdate,-5) " +
                         "and actual_end_date < sysdate " +
                         "group by ac_cserie,actual_end_year,actual_end_month"
             query_sql = query_sql.replace(new RegExp(' ', 'g'), '%20').replace(new RegExp("'", 'g'), '%27');
@@ -128,7 +129,7 @@
                 //     // query for month_list
                     var data_model = response_model;
                     var query_month = "SELECT concat(cast(actual_end_year AS STRING),'-',cast(actual_end_month AS STRING)) AS year_and_month " +
-                                  "FROM APC_Jaguar_BI_orc WHERE actual_end_date > add_months(SYSDATE,-6) AND actual_end_date <SYSDATE " +
+                                  "FROM APC_Jaguar_BI_orc WHERE actual_end_date > add_months(SYSDATE,-5) AND actual_end_date <SYSDATE " +
                                   "GROUP BY actual_end_year,actual_end_month ORDER BY actual_end_year,actual_end_month"
                     query_month = query_month.replace(new RegExp(' ', 'g'), '%20').replace(new RegExp("'", 'g'), '%27');
                     $.get("../index.php/inceptor?query=" + query_month,function(response_month) {
@@ -137,7 +138,7 @@
                             var month_list = []
                             var formated_data = []
 
-                            for(var i = 0;i<data_month.length-1;i++){
+                            for(var i = 0;i<data_month.length;i++){
                                 month_list.push(data_month[i].year_and_month)
                             }
 
@@ -172,6 +173,7 @@
 
 
                             option2 = {
+                                title: {text: '近六个月交付数量',bottom:'2%',right:'35%'},
                                 legend: {},
                                 tooltip: {},
                                 dataset: {
@@ -197,6 +199,6 @@
                     });
             });
 
-        });
+        },3000));
     </script>
 @endsection
