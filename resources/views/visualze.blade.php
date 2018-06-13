@@ -17,6 +17,13 @@
     </div>
     
 </div>
+<div class="row">
+
+	<div id="chart-4" class="col-md-12 col-xs-12" style="height:400px">
+
+    </div>
+    
+</div>
 @endsection
 
 
@@ -259,7 +266,7 @@
 
 
                     option3 = {
-                        title: {text: '实时生产状态',bottom:'2%',right:'35%'},
+                        title: {text: '实时生产状态',bottom:'2%',right:'45%'},
                         legend: {},
                         tooltip: {},
                         dataset: {
@@ -290,5 +297,62 @@
                 });
             });
         },5000));
+
+        $(setTimeout(function() {
+            var query_sql = "SELECT concat(weekofyear(flight_date),'th of ',EXTRACT(YEAR FROM flight_date)) AS week_of_year,count(flight_date) AS 'number' FROM tianjin_flight_planning WHERE flight_date > add_months(SYSDATE,-12) AND flight_date <add_months(SYSDATE,-9) GROUP BY flight_date,week_of_year ORDER BY week_of_year"
+            $.get("../index.php/inceptor?query=" + query_sql,function(response) {
+                var data = response;
+                var week_of_year_list = [];
+                var number_list = [];
+                
+                for(var i = 0;i<data.length;i++){
+                    week_of_year_list.push(data[i].week_of_year)
+                    number_list.push(data[i].number)
+                }
+
+                var dom = document.getElementById("chart-4");
+                    myChart4 = echarts.init(dom);
+
+
+                option4 = {
+                    title: {text: '每周交付工作量',bottom:'2%',right:'45%'},
+                    tooltip: {},
+                    xAxis: [
+                        {
+                            type:'category',
+                            data: week_of_year_list
+                        }
+                    ],
+                    yAxis: [
+                        {
+                            type: 'value'
+                        }
+                    ],
+
+                    series: [
+                        {
+                            name:'交付完成量',
+                            type:'bar',
+                            barWidth:'50%',
+                            data: number_list,
+                            itemStyle:{
+                                    normal:{
+                                        color:'#1E90FF'
+                                    }
+                            }
+                
+                        }
+
+
+                    ]
+                };
+
+                myChart4.setOption(option4);
+                window.addEventListener("resize", function(){
+                    myChart4.resize();
+                });
+            });
+        },7500));
+
     </script>
 @endsection
