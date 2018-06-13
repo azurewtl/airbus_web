@@ -110,7 +110,7 @@
                                 ],
                                 yAxis: [
                                     {
-                                        name = '开工数目（个）'
+                                        name:'开工数目（个）'
                                     }
                                 ],
                                 // Declare several bar series, each will be mapped
@@ -211,7 +211,7 @@
                                 ],
                                 yAxis: [
                                     {
-                                        name = '交付数目（个）'
+                                        name:'交付数目（个）'
                                     }
                                 ],
                                 // Declare several bar series, each will be mapped
