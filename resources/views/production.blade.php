@@ -8,7 +8,7 @@
     </div>
     <div class="card-body">
         <div class="input-group">
-            <select class="form-control input-group-text col-lg-2" id="production-column">
+            <select id="col_option" class="form-control input-group-text col-lg-2" id="production-column">
                     <option>ac_cmsn</option>
                     <option>pel_cplanningeventname</option>
                     <option>pe_cmanufacturingsite</option>
@@ -23,9 +23,9 @@
                     <option>cstartbaselinedate</option>
             </select>
             
-            <input type="text" class="form-control" placeholder="搜索值">
+            <input id="input-text" type="text" class="form-control" placeholder="搜索值">
             <div class="input-group-append">
-                <span class="input-group-text" id="basic-addon2"> <i class="fa fa-search"></i></span>
+                <span class="input-group-text" id="btn-search"> <i class="fa fa-search"></i></span>
             </div>
         </div>
     </div>
@@ -38,15 +38,21 @@
     <table id="table_1" class="display">
     <thead>
         <tr>
-            <th>Column 1</th>
-            <th>Column 2</th>
+            <th>ac_cmsn</th>
+            <th>pel_cplanningeventname</th>
+            <th>pe_cmanufacturingsite</th>
+            <th>ac_cserie</th>
+            <th>ac_ccust_name</th>
+            <th>actual_start_date</th>
+            <th>actual_start_year</th>
+            <th>actual_start_month</th>
+            <th>actual_end_date</th>
+            <th>actual_end_year</th>
+            <th>actual_end_month</th>
+            <th>cstartbaselinedate</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>Row 1 Data 1</td>
-            <td>Row 1 Data 2</td>
-        </tr>
     </tbody>
 </table>
 </div>
