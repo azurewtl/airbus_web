@@ -17,6 +17,12 @@
             <span class="nav-link-text">文档检索</span>
           </a>
         </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="文档检索">
+          <a class="nav-link" href="/production">
+            <i class="fa fa-fw fa-search"></i>
+            <span class="nav-link-text">生产报表检索</span>
+          </a>
+        </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="数据可视化">
           <a class="nav-link" href="/visualze">
             <i class="fa fa-fw fa-area-chart"></i>

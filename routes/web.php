@@ -18,23 +18,15 @@ Route::get('/', function () {
 
 Route::get('/search', 'SearchController@index');
 
-
-
-Route::get('/echarts', 'echartscontroller@test2');
+Route::get('/production', 'ProductionController@index');
 
 Route::get('/inceptor', 'InceptorController@odbcConnector');
 
 Route::get('/visualze', 'InceptorController@visualzeViews');
-//Route::post('/odata', 'CunliangController@odata');
 
 Route::get('/table', 'StaticPagesController@table');
 
 Route::get('/download/{id}', 'SearchController@download');
 
-Route::get('/echarts', 'echartscontroller@test2');
-
-Route::get('/inceptor', 'InceptorController@odbcConnector');
-
-Route::get('/visualze', 'InceptorController@visualzeViews');
 //Route::post('/odata', 'CunliangController@odata');
 
