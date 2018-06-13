@@ -66,37 +66,38 @@
     $(function() {
         // add event listener for click
         $("#btn-search").click(function(){
-            col_name = $("#opt-col").val();
-        col_value = $("#txt-val").val();
+            var col_name = $("#opt-col").val();
+            var col_value = $("#txt-val").val();
 
-        // read from database
-        var query_sql = "select * from apc_jaguar_bi_orc where " + col_name + "=" + col_value + " limit 200"
-        query_sql = query_sql.replace(new RegExp(' ', 'g'), '%20').replace(new RegExp("'", 'g'), '%27');
-        
-        // query for dataset
-        $.get("../index.php/inceptor?query=" + query_sql,function(response) {
-            data = JSON.parse(response);
-            $("#table_1").DataTable({
-                data:data,
-                columns:[
-                    {data:'ac_cmsn'},
-                    {data:'pel_cplanningeventname'},
-                    {data:'pe_cmanufacturingsite'},
-                    {data:'ac_cserie'},
-                    {data:'ac_ccust_name'},
-                    {data:'actual_start_date'},
-                    {data:'actual_start_year'},
-                    {data:'actual_start_month'},
-                    {data:'actual_end_date'},
-                    {data:'actual_end_year'},
-                    {data:'actual_end_month'},
-                    {data:'cstartbaselinedate'}
-                ]
-            })
+            // read from database
+            var query_sql = "select * from apc_jaguar_bi_orc where " + col_name + "=" + col_value + " limit 200"
+            console.log(query_sql);
+            query_sql = query_sql.replace(new RegExp(' ', 'g'), '%20').replace(new RegExp("'", 'g'), '%27');
+            
+            // query for dataset
+            $.get("../index.php/inceptor?query=" + query_sql,function(response) {
+                data = JSON.parse(response);
+                $("#table_1").DataTable({
+                    data:data,
+                    columns:[
+                        {data:'ac_cmsn'},
+                        {data:'pel_cplanningeventname'},
+                        {data:'pe_cmanufacturingsite'},
+                        {data:'ac_cserie'},
+                        {data:'ac_ccust_name'},
+                        {data:'actual_start_date'},
+                        {data:'actual_start_year'},
+                        {data:'actual_start_month'},
+                        {data:'actual_end_date'},
+                        {data:'actual_end_year'},
+                        {data:'actual_end_month'},
+                        {data:'cstartbaselinedate'}
+                    ]
+                })
+            });
         });
-    });
 
-        })
+    })
 
 </script>
 @endsection
