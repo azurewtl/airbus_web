@@ -70,7 +70,7 @@
             var col_value = $("#txt-val").val();
 
             // read from database
-            var query_sql = "select * from apc_jaguar_bi_orc where " + col_name + "=" + col_value + " limit 200"
+            var query_sql = "select * from apc_jaguar_bi_orc where " + col_name + "='" + col_value + "' limit 200"
             console.log(query_sql);
             query_sql = query_sql.replace(new RegExp(' ', 'g'), '%20').replace(new RegExp("'", 'g'), '%27');
             
