@@ -65,6 +65,7 @@
 <script type="text/javascript">
     $(function() {
         // add event listener for click
+        var table_1=null;
         $("#btn-search").click(function(){
             var col_name = $("#opt-col").val();
             var col_value = $("#txt-val").val();
@@ -73,13 +74,13 @@
             var query_sql = "select * from apc_jaguar_bi_orc where " + col_name + "='" + col_value + "' limit 200"
             console.log(query_sql);
             query_sql = query_sql.replace(new RegExp(' ', 'g'), '%20').replace(new RegExp("'", 'g'), '%27');
-            
             // query for dataset
             $.get("../index.php/inceptor?query=" + query_sql,function(response) {
                 data = JSON.parse(response);
-                var table = $("#table_1").DataTable();
-                table.destory();
-                $("#table_1").DataTable({
+                if (table_1 != null) {
+                    table_1.destory();
+                }
+                table_1 = $("#table_1").DataTable({
                     data:data,
                     columns:[
                         {data:'ac_cmsn'},
