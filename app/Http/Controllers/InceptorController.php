@@ -25,7 +25,6 @@ class InceptorController extends Controller
  
         while($result=odbc_fetch_array($rs))
         {
-          $result = array_map('mb_convert_encoding', $result, ['UTF-8', 'UTF-8']);
           $result_arr[] = $result;
         }
         //echo json_encode($result_arr);
