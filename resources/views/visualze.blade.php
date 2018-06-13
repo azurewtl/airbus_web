@@ -102,8 +102,17 @@
                                 dataset: {
                                     source: formated_data
                                 },
-                                xAxis: {data:month_list},
-                                yAxis: {},
+                                xAxis: [
+                                    {
+                                        name:'近六个月',
+                                        data:month_list
+                                    }
+                                ],
+                                yAxis: [
+                                    {
+                                        name = '开工数目（个）'
+                                    }
+                                ],
                                 // Declare several bar series, each will be mapped
                                 // to a column of dataset.source by default.
                                 series: [
@@ -194,8 +203,17 @@
                                 dataset: {
                                     source: formated_data
                                 },
-                                xAxis: {data:month_list},
-                                yAxis: {},
+                                xAxis: [
+                                    {
+                                        name:'近六个月',
+                                        data:month_list
+                                    }
+                                ],
+                                yAxis: [
+                                    {
+                                        name = '交付数目（个）'
+                                    }
+                                ],
                                 // Declare several bar series, each will be mapped
                                 // to a column of dataset.source by default.
                                 series: [
@@ -272,8 +290,17 @@
                         dataset: {
                             source: formated_data
                         },
-                        xAxis: {data:peName_list},
-                        yAxis: {},
+                        xAxis: [
+                            {
+                                name:'工序名称',
+                                data:peName_list
+                            }
+                        ],
+                        yAxis: [
+                            {
+                                name:'正在装配的数量（架）'
+                            }
+                        ],
                         // Declare several bar series, each will be mapped
                         // to a column of dataset.source by default.
                         series: [
@@ -299,7 +326,7 @@
         },5000));
 
         $(setTimeout(function() {
-            var query_sql = "SELECT concat(weekofyear(flight_date),'th of ',EXTRACT(YEAR FROM flight_date)) AS week_of_year,count(flight_date) AS 'number' FROM tianjin_flight_planning WHERE flight_date > add_months(SYSDATE,-12) AND flight_date <add_months(SYSDATE,-9) GROUP BY flight_date,week_of_year ORDER BY week_of_year"
+            var query_sql = "SELECT concat(week,'th week of ',flight_year) as week_of_year,count(week) AS 'number' from(SELECT weekofyear(flight_date) AS week,EXTRACT(YEAR FROM flight_date) AS flight_year FROM tianjin_flight_planning WHERE flight_date > add_months(SYSDATE,-12) AND flight_date <add_months(SYSDATE,-9) GROUP BY week,flight_date ORDER BY week) GROUP BY flight_year,week ORDER BY flight_year,week"
             $.get("../index.php/inceptor?query=" + query_sql,function(response) {
                 var data = JSON.parse(response);
                 var week_of_year_list = [];
@@ -319,12 +346,14 @@
                     tooltip: {},
                     xAxis: [
                         {
+                            name:'全年同期三个月的每周',
                             type:'category',
                             data: week_of_year_list
                         }
                     ],
                     yAxis: [
                         {
+                            name: '每星期交付完成数量（项）',
                             type: 'value'
                         }
                     ],
