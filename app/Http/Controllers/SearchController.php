@@ -9,9 +9,9 @@ use org\apache\hadoop\WebHDFS;
 class SearchController extends Controller
 {
     public $hosts = [
-        'http://172.16.140.94:9200'//,
+        // 'http://172.16.140.94:9200',
         //'http://172.16.140.95:9200',
-        //'http://172.16.140.96:9200'
+        'http://172.16.140.96:9200'
     ];
 
     public $hdfs_base = "tmp/airbus/pdf/pdf";
