@@ -35,26 +35,28 @@
     <div class="card-header">
         查询结果
     </div>
-    <table id="table_1" class="table-responsive display">
-    <thead>
-        <tr>
-            <th>ac_cmsn</th>
-            <th>pel_cplanningeventname</th>
-            <th>pe_cmanufacturingsite</th>
-            <th>ac_cserie</th>
-            <th>ac_ccust_name</th>
-            <th>actual_start_date</th>
-            <th>actual_start_year</th>
-            <th>actual_start_month</th>
-            <th>actual_end_date</th>
-            <th>actual_end_year</th>
-            <th>actual_end_month</th>
-            <th>cstartbaselinedate</th>
-        </tr>
-    </thead>
-    <tbody>
-    </tbody>
-</table>
+    <div class="table-responsive">
+        <table id="table_1" class="table display nowrap">
+        <thead>
+            <tr>
+                <th>ac_cmsn</th>
+                <th>pel_cplanningeventname</th>
+                <th>pe_cmanufacturingsite</th>
+                <th>ac_cserie</th>
+                <th>ac_ccust_name</th>
+                <th>actual_start_date</th>
+                <th>actual_start_year</th>
+                <th>actual_start_month</th>
+                <th>actual_end_date</th>
+                <th>actual_end_year</th>
+                <th>actual_end_month</th>
+                <th>cstartbaselinedate</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+        </table>
+    </div>
 </div>
 
 @endsection
@@ -79,6 +81,7 @@
                 $("#table_1").dataTable().fnDestroy();
                 table_1 = $("#table_1").DataTable({
                     data:data,
+                    scrollX: true,
                     columns:[
                         {data:'ac_cmsn'},
                         {data:'pel_cplanningeventname'},
