@@ -64,7 +64,7 @@
 <script type="text/javascript">
     $(function() {
       // zhihu
-      var query_sql = "select * from zhihu_data limit 500"
+      var query_sql = "select * from zhihu_data limit 10"
       query_sql = query_sql.replace(new RegExp(' ', 'g'), '%20').replace(new RegExp("'", 'g'), '%27');
       // query for dataset
       $.get("../index.php/inceptor?query=" + query_sql,function(response) {
@@ -83,8 +83,19 @@
                   {data:'comment_count'},
                   {data:'excerpt'},
                   {data:'content'}
+              ],
+              columnDefs: [
+                { width: 300, targets: 0 },
+                { width: 300, targets: 0 },
+                { width: 300, targets: 0 },
+                { width: 300, targets: 0 },
+                { width: 300, targets: 0 },
+                { width: 300, targets: 0 },
+                { width: 300, targets: 0 },
+                { width: 300, targets: 0 },
+                { width: 300, targets: 0 },
+                { width: 300, targets: 0 },
               ]
-
           })
       });
 
@@ -111,6 +122,21 @@
                   {data:'verified_type'},
                   {data:'profile_url'},
                   {data:'comment'}
+              ],
+              columnDefs: [
+                { width: 300, targets: 0 },
+                { width: 300, targets: 0 },
+                { width: 300, targets: 0 },
+                { width: 300, targets: 0 },
+                { width: 300, targets: 0 },
+                { width: 300, targets: 0 },
+                { width: 300, targets: 0 },
+                { width: 300, targets: 0 },
+                { width: 300, targets: 0 },
+                { width: 300, targets: 0 },
+                { width: 300, targets: 0 },
+                { width: 300, targets: 0 },                { width: 300, targets: 0 },
+                { width: 300, targets: 0 },
               ]
           })
       });
