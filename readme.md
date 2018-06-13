@@ -2,11 +2,16 @@
 
 ## 运行
 ```
-docker pull hitalos/laravel
-docker run --name airbus -d -v /path/to/this/project:/var/www -p 8280:80 hitalos/laravel
+
 
 Fr天蓝（odbc驱动版）：
-docker run --name airbus --network docker0 -d -p 80:80 -v /home/azure/airbus_web:/var/www joey/php-odbc
+docker network create docker0
+
+docker run --name airbus --network docker0 -d -p 10080:80 -v /home/azure/airbus_web:/var/www joey/php-odbc
+
+docker exec -it airbus bash
+
+vim /etc/odbc.ini 
 ```
 
 ## 离线运行
