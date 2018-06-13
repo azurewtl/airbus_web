@@ -31,7 +31,7 @@ class InceptorController extends Controller
         //echo json_encode($result_arr);
 
         return response(json_encode($result_arr, JSON_UNESCAPED_UNICODE))
-        ->head('Content_Type', 'application/json');
+        ->header('Content_Type', 'application/json');
         odbc_close($conn);
 
     }
