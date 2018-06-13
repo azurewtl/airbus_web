@@ -78,7 +78,7 @@
                 data = JSON.parse(response);
                 table_1 = $("#table_1").DataTable({
                     data:data,
-                    retrieve: true,
+                    destory: true,
                     columns:[
                         {data:'ac_cmsn'},
                         {data:'pel_cplanningeventname'},
