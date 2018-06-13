@@ -76,9 +76,9 @@
             // query for dataset
             $.get("../index.php/inceptor?query=" + query_sql,function(response) {
                 data = JSON.parse(response);
+                $("#table_1").dataTable().fnDestroy();
                 table_1 = $("#table_1").DataTable({
                     data:data,
-                    destory: true,
                     columns:[
                         {data:'ac_cmsn'},
                         {data:'pel_cplanningeventname'},
