@@ -60,55 +60,55 @@
 <script type="text/javascript">
     $(function() {
       // zhihu
-      var query_sql = "select  *  from zhihu_data;"
+      var query_sql = "select * from zhihu_data limit 10"
       query_sql = query_sql.replace(new RegExp(' ', 'g'), '%20').replace(new RegExp("'", 'g'), '%27');
       // query for dataset
       $.get("../index.php/inceptor?query=" + query_sql,function(response) {
-          data = JSON.parse(response);
-          $("#table_1").dataTable().fnDestroy();
-          table_1 = $("#table_1").DataTable({
+          var data = JSON.parse(response);
+          $("#table_1").DataTable({
               data:data,
               columns:[
-                  {data:'Review_Id'},
-                  {data:'Create_Time'},
-                  {data:'Rootid'},
-                  {data:'Username'},
-                  {data:'Userid'},
-                  {data:'User_Description'},
-                  {data:'User_City'},
-                  {data:'User_Location'},
-                  {data:'Image'},
-                  {data:'Verified'},
-                  {data:'Verified_Type'},
-                  {data:'Profile_Url'},
-                  {data:'Comment'}
+                  {data:'num'},
+                  {data:'author'},
+                  {data:'voteup_Count'},
+                  {data:'gender'},
+                  {data:'created_Time'},
+                  {data:'updated_Time'},
+                  {data:'thanks_Count'},
+                  {data:'comment_Count'},
+                  {data:'excerpt'},
+                  {data:'content'}
               ]
+
           })
       });
 
       // weibo
-      query_sql = "select  *  from weibo_data;"
+      query_sql = "select * from weibo_data limit 10"
       query_sql = query_sql.replace(new RegExp(' ', 'g'), '%20').replace(new RegExp("'", 'g'), '%27');
       // query for dataset
       $.get("../index.php/inceptor?query=" + query_sql,function(response) {
-          data = JSON.parse(response);
-          $("#table_1").dataTable().fnDestroy();
-          table_1 = $("#table_1").DataTable({
+          var data = JSON.parse(response);
+          $("#table_2").DataTable({
               data:data,
               columns:[
-                  {data:'Num'},
-                  {data:'Author'},
-                  {data:'Voteup_Count'},
-                  {data:'Gender'},
-                  {data:'Created_Time'},
-                  {data:'Updated_Time'},
-                  {data:'Thanks_Count'},
-                  {data:'Comment_Count'},
-                  {data:'Excerpt'},
-                  {data:'Content'}
+                  {data:'review_id'},
+                  {data:'create_time'},
+                  {data:'rootid'},
+                  {data:'username'},
+                  {data:'userid'},
+                  {data:'user_description'},
+                  {data:'user_city'},
+                  {data:'user_location'},
+                  {data:'image'},
+                  {data:'verified'},
+                  {data:'verified_type'},
+                  {data:'profile_url'},
+                  {data:'comment'}
               ]
           })
       });
+
     })
 
 </script>
