@@ -65,7 +65,6 @@
 <script type="text/javascript">
     $(function() {
         // add event listener for click
-        var table_1=null;
         $("#btn-search").click(function(){
             var col_name = $("#opt-col").val();
             var col_value = $("#txt-val").val();
@@ -77,11 +76,9 @@
             // query for dataset
             $.get("../index.php/inceptor?query=" + query_sql,function(response) {
                 data = JSON.parse(response);
-                if (table_1 != null) {
-                    table_1.destory();
-                }
                 table_1 = $("#table_1").DataTable({
                     data:data,
+                    retrieve: true,
                     columns:[
                         {data:'ac_cmsn'},
                         {data:'pel_cplanningeventname'},
