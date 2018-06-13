@@ -84,6 +84,7 @@
                   {data:'excerpt'},
                   {data:'content'}
               ],
+              fixedColumns: true,
               columnDefs: [
                 { width: 300, targets: 0 },
                 { width: 300, targets: 0 },
@@ -123,6 +124,7 @@
                   {data:'profile_url'},
                   {data:'comment'}
               ],
+              fixedColumns: true,
               columnDefs: [
                 { width: 300, targets: 0 },
                 { width: 300, targets: 0 },
