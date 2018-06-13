@@ -83,20 +83,8 @@
                   {data:'comment_count'},
                   {data:'excerpt'},
                   {data:'content'}
-              ],
-              fixedColumns: true,
-              columnDefs: [
-                { width: 300, targets: 0 },
-                { width: 300, targets: 0 },
-                { width: 300, targets: 0 },
-                { width: 300, targets: 0 },
-                { width: 300, targets: 0 },
-                { width: 300, targets: 0 },
-                { width: 300, targets: 0 },
-                { width: 300, targets: 0 },
-                { width: 300, targets: 0 },
-                { width: 300, targets: 0 },
               ]
+
           })
       });
 
@@ -123,22 +111,6 @@
                   {data:'verified_type'},
                   {data:'profile_url'},
                   {data:'comment'}
-              ],
-              fixedColumns: true,
-              columnDefs: [
-                { width: 300, targets: 0 },
-                { width: 300, targets: 0 },
-                { width: 300, targets: 0 },
-                { width: 300, targets: 0 },
-                { width: 300, targets: 0 },
-                { width: 300, targets: 0 },
-                { width: 300, targets: 0 },
-                { width: 300, targets: 0 },
-                { width: 300, targets: 0 },
-                { width: 300, targets: 0 },
-                { width: 300, targets: 0 },
-                { width: 300, targets: 0 },                { width: 300, targets: 0 },
-                { width: 300, targets: 0 },
               ]
           })
       });
