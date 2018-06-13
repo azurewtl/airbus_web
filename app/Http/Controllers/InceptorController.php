@@ -22,7 +22,8 @@ class InceptorController extends Controller
         $query_input = $_GET['query'];
 
         $rs = odbc_do($conn,$query_input);
- 
+        
+        $result_arr = [];
         while($result=odbc_fetch_array($rs))
         {
           $result_arr[] = $result;

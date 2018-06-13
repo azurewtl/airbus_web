@@ -8,7 +8,7 @@
     </div>
     <div class="card-body">
         <div class="input-group">
-            <select id="col_option" class="form-control input-group-text col-lg-2" id="production-column">
+            <select id="opt-col" class="form-control input-group-text col-lg-2" id="production-column">
                     <option>ac_cmsn</option>
                     <option>pel_cplanningeventname</option>
                     <option>pe_cmanufacturingsite</option>
@@ -23,7 +23,7 @@
                     <option>cstartbaselinedate</option>
             </select>
             
-            <input id="input-text" type="text" class="form-control" placeholder="搜索值">
+            <input id="txt-val" type="text" class="form-control" placeholder="搜索值">
             <div class="input-group-append">
                 <span class="input-group-text" id="btn-search"> <i class="fa fa-search"></i></span>
             </div>
@@ -35,7 +35,7 @@
     <div class="card-header">
         查询结果
     </div>
-    <table id="table_1" class="display">
+    <table id="table_1" class="table-responsive display">
     <thead>
         <tr>
             <th>ac_cmsn</th>
@@ -64,17 +64,39 @@
 
 <script type="text/javascript">
     $(function() {
+        // add event listener for click
+        $("#btn-search").click(function(){
+            col_name = $("#opt-col").val();
+        col_value = $("#txt-val").val();
+
         // read from database
-        var query_sql = "select * from apc_jaguar_bi_orc"
+        var query_sql = "select * from apc_jaguar_bi_orc where " + col_name + "=" + col_value + " limit 200"
         query_sql = query_sql.replace(new RegExp(' ', 'g'), '%20').replace(new RegExp("'", 'g'), '%27');
         
         // query for dataset
         $.get("../index.php/inceptor?query=" + query_sql,function(response) {
-
-            var data = JSON.parse(response);
-
+            data = JSON.parse(response);
+            $("#table_1").DataTable({
+                data:data,
+                columns:[
+                    {data:'ac_cmsn'},
+                    {data:'pel_cplanningeventname'},
+                    {data:'pe_cmanufacturingsite'},
+                    {data:'ac_cserie'},
+                    {data:'ac_ccust_name'},
+                    {data:'actual_start_date'},
+                    {data:'actual_start_year'},
+                    {data:'actual_start_month'},
+                    {data:'actual_end_date'},
+                    {data:'actual_end_year'},
+                    {data:'actual_end_month'},
+                    {data:'cstartbaselinedate'}
+                ]
+            })
         });
     });
+
+        })
 
 </script>
 @endsection
