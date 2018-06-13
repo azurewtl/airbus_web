@@ -10,6 +10,7 @@
     </div>
     
 </div>
+<hr>
 <div class="row">
 
 	<div id="chart-3" class="col-md-12 col-xs-12" style="height:400px">
@@ -17,6 +18,7 @@
     </div>
     
 </div>
+<hr>
 <div class="row">
 
 	<div id="chart-4" class="col-md-12 col-xs-12" style="height:400px">
@@ -31,7 +33,6 @@
 
     <script type="text/javascript">
         $(function() {
-            
             // read from database
             var query_sql = "select ac_cserie,actual_start_year,actual_start_month,count(ac_cmsn) as 'number' " +
                         "from apc_jaguar_bi_orc " +
@@ -43,19 +44,19 @@
             // query for dataset
             $.get("../index.php/inceptor?query=" + query_sql,function(response) {
 
-                var data = response;
+                var data = JSON.parse(response);
                 // query for model_list
                 var query_model = "select distinct ac_cserie from apc_jaguar_bi_orc order by ac_cserie"
                 query_model = query_model.replace(new RegExp(' ', 'g'), '%20').replace(new RegExp("'", 'g'), '%27');
                 $.get("../index.php/inceptor?query=" + query_model,function(response_model) {
-                //     // query for month_list
-                    var data_model = response_model;
+                // query for month_list
+                    var data_model = JSON.parse(response_model);
                     var query_month = "SELECT concat(cast(actual_start_year AS STRING),'-',cast(actual_start_month AS STRING)) AS year_and_month " +
                                   "FROM APC_Jaguar_BI_orc WHERE actual_start_date > add_months(SYSDATE,-5) AND actual_start_date <add_months(SYSDATE,1) " +
                                   "GROUP BY actual_start_year,actual_start_month ORDER BY actual_start_year,actual_start_month"
                     query_month = query_month.replace(new RegExp(' ', 'g'), '%20').replace(new RegExp("'", 'g'), '%27');
                     $.get("../index.php/inceptor?query=" + query_month,function(response_month) {
-                            var data_month = response_month;
+                            var data_month = JSON.parse(response_month);
                             var model_list = []
                             var month_list = []
                             var formated_data = []
@@ -124,7 +125,6 @@
         });
 
         $(setTimeout(function() {
-            
             // read from database
             var query_sql = "select ac_cserie,actual_end_year,actual_end_month,count(ac_cmsn) as 'number' " +
                         "from apc_jaguar_bi_orc " +
@@ -136,19 +136,19 @@
             // query for dataset
             $.get("../index.php/inceptor?query=" + query_sql,function(response) {
 
-                var data = response;
+                var data = JSON.parse(response);
                 // query for model_list
                 var query_model = "select distinct ac_cserie from apc_jaguar_bi_orc order by ac_cserie"
                 query_model = query_model.replace(new RegExp(' ', 'g'), '%20').replace(new RegExp("'", 'g'), '%27');
                 $.get("../index.php/inceptor?query=" + query_model,function(response_model) {
-                //     // query for month_list
-                    var data_model = response_model;
+                // query for month_list
+                    var data_model = JSON.parse(response_model);
                     var query_month = "SELECT concat(cast(actual_end_year AS STRING),'-',cast(actual_end_month AS STRING)) AS year_and_month " +
                                   "FROM APC_Jaguar_BI_orc WHERE actual_end_date > add_months(SYSDATE,-5) AND actual_end_date <SYSDATE " +
                                   "GROUP BY actual_end_year,actual_end_month ORDER BY actual_end_year,actual_end_month"
                     query_month = query_month.replace(new RegExp(' ', 'g'), '%20').replace(new RegExp("'", 'g'), '%27');
                     $.get("../index.php/inceptor?query=" + query_month,function(response_month) {
-                            var data_month = response_month;
+                            var data_month = JSON.parse(response_month);
                             var model_list = []
                             var month_list = []
                             var formated_data = []
@@ -223,10 +223,10 @@
 
             query_sql = query_sql.replace(new RegExp(' ', 'g'), '%20').replace(new RegExp("'", 'g'), '%27');
             $.get("../index.php/inceptor?query=" + query_sql,function(response) {
-                var data = response;
+                var data = JSON.parse(response);
                 var query_peName = "select distinct pel_cplanningeventname from (select pel_cplanningeventname,pe_cmanufacturingsite FROM apc_jaguar_bi_orc WHERE SYSDATE > actual_start_date AND SYSDATE < actual_end_date GROUP BY pel_cplanningeventname,pe_cmanufacturingsite)"
                 $.get("../index.php/inceptor?query=" + query_peName,function(response_peName) {
-                    var data_peName = response_peName;
+                    var data_peName = JSON.parse(response_peName);
                     var formated_data = [];
                     var peName_list = [];
                     var manufacturing_site_list = [];
@@ -301,7 +301,7 @@
         $(setTimeout(function() {
             var query_sql = "SELECT concat(weekofyear(flight_date),'th of ',EXTRACT(YEAR FROM flight_date)) AS week_of_year,count(flight_date) AS 'number' FROM tianjin_flight_planning WHERE flight_date > add_months(SYSDATE,-12) AND flight_date <add_months(SYSDATE,-9) GROUP BY flight_date,week_of_year ORDER BY week_of_year"
             $.get("../index.php/inceptor?query=" + query_sql,function(response) {
-                var data = response;
+                var data = JSON.parse(response);
                 var week_of_year_list = [];
                 var number_list = [];
                 
@@ -342,8 +342,6 @@
                             }
                 
                         }
-
-
                     ]
                 };
 
