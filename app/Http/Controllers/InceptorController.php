@@ -38,6 +38,11 @@ class InceptorController extends Controller
     {
       return view ('visualze');
     }
+
+    public function productionViews()
+    {
+      return view ('production');
+    }
 }
 ?>
 

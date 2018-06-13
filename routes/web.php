@@ -18,7 +18,7 @@ Route::get('/', function () {
 
 Route::get('/search', 'SearchController@index');
 
-Route::get('/production', 'ProductionController@index');
+Route::get('/production', 'InceptorController@productionViews');
 
 Route::get('/inceptor', 'InceptorController@odbcConnector');
 
