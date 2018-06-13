@@ -77,6 +77,8 @@
             // query for dataset
             $.get("../index.php/inceptor?query=" + query_sql,function(response) {
                 data = JSON.parse(response);
+                var table = $("#table_1").DataTable();
+                table.destory();
                 $("#table_1").DataTable({
                     data:data,
                     columns:[
