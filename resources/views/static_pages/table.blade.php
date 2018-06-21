@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="card mb-3">
-  <div class="card-header">
-        知乎
+  <div class="card-header"><!--知乎-->
+        Zhihu
   </div>
   <div class="table-responsive">
     <table id="table_1" class="table display nowrap">
@@ -28,8 +28,8 @@
 </div>
 
 <div class="card mb-3">
-    <div class="card-header">
-        微博
+    <div class="card-header"><!--微博-->
+        Weibo
     </div>
     <div class="table-responsive">
       <table id="table_2" class="table display nowrap">

@@ -2,12 +2,50 @@
 
 @section('content')
 <div class="row">
-	<div id="chart-1" class="col-md-6 col-xs-12">
-
-	</div>
-	<div id="chart-2" class="col-md-6 col-xs-12" style="height:400px">
-
+    <div class="col-md-4  col-xs-12">
+        <div class="card bg-light mb-3 text-center" style="hight:400px">
+            <div class="media">
+                <div class="media-left media-middle">
+                    <i class="fa fa-plane" style="font-size:85px"></i>
+                </div>
+                <div class="media-body media-right">
+                    <h2 class="card-text">Planes in production last month:</h3>
+                    <h2 class="card-text" id="plane_in_production"></h2>
+                </div>
+            </div>
+        </div>
     </div>
+    <div class="col-md-4  col-xs-12">
+        <div class="card bg-light mb-3 text-center" style="hight:300px">
+            <div class="media">
+                <div class="media-left meida media-middle">
+                    <span><i class="fa fa-calendar-plus-o" style="font-size:85px"></i></span>
+                </div>
+                <div class="media-body media-text-right">
+                    <h2 class="card-text">Number of new orders last month: </h2>
+                    <h2 class="card-text" id="new_order"></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4  col-xs-12">
+        <div class="card bg-light mb-3 text-center">
+            <div class="media">
+                <div class="media-left meida media-middle">
+                    <span><i class="fa fa-calendar-check-o" style="font-size:85px"></i></span>
+                </div>
+                <div class="media-body media-text-right">
+                    <h2 class="card-text">Number of finished orders last month: </h2>
+                    <h2 class="card-text" id="finished_order"></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+	<div id="chart-1" class="col-md-6 col-xs-12"></div>
+	<div id="chart-2" class="col-md-6 col-xs-12" style="height:400px"></div>
     
 </div>
 <hr>
@@ -33,6 +71,30 @@
 
     <script type="text/javascript">
         $(function() {
+            var query_sql = "SELECT count(DISTINCT ac_cmsn) AS plane_in_production FROM apc_jaguar_bi_orc WHERE actual_end_date > SYSDATE AND actual_start_date <SYSDATE"
+            $.get("../index.php/inceptor?query=" + query_sql,function(response) {
+                plane_in_production = JSON.parse(response);
+                document.getElementById("plane_in_production").innerHTML = plane_in_production[0].plane_in_production;
+            });
+        });
+
+        $(setTimeout(function() {
+            var query_sql = "SELECT count(ac_cmsn) AS new_order FROM apc_jaguar_bi_orc WHERE actual_start_date < SYSDATE AND actual_start_date > add_months(SYSDATE,-1)"
+            $.get("../index.php/inceptor?query=" + query_sql,function(response) {
+                var new_order = JSON.parse(response);
+                document.getElementById("new_order").innerHTML = new_order[0].new_order;
+            });
+        },1000));
+
+        $(setTimeout(function() {
+            var query_sql = "SELECT count(ac_cmsn) AS finished_order FROM apc_jaguar_bi_orc WHERE actual_end_date < SYSDATE AND actual_end_date > add_months(SYSDATE,-1)"
+            $.get("../index.php/inceptor?query=" + query_sql,function(response) {
+                finished_order= JSON.parse(response);
+                document.getElementById("finished_order").innerHTML = finished_order[0].finished_order;
+            });
+        },2000));
+
+        $(setTimeout(function() {
             // read from database
             var query_sql = "select ac_cserie,actual_start_year,actual_start_month,count(ac_cmsn) as 'number' " +
                         "from apc_jaguar_bi_orc " +
@@ -96,7 +158,7 @@
 
 
                             option = {
-                                title: {text: '近六个月开工数量',bottom:'2%',right:'35%'},
+                                title: {text: 'New airplane orders in last six months',bottom:'2%',right:'35%'},//近六个月开工数量
                                 legend: {},
                                 tooltip: {},
                                 dataset: {
@@ -104,13 +166,13 @@
                                 },
                                 xAxis: [
                                     {
-                                        name:'近六个月',
+                                        name:'Last six months',//近六个月
                                         data:month_list
                                     }
                                 ],
                                 yAxis: [
                                     {
-                                        name:'开工数目（个）'
+                                        name:'Order number(s)'//开工数目（个）
                                     }
                                 ],
                                 // Declare several bar series, each will be mapped
@@ -131,7 +193,7 @@
                     });
             });
 
-        });
+        },4000));
 
         $(setTimeout(function() {
             // read from database
@@ -197,7 +259,7 @@
 
 
                             option2 = {
-                                title: {text: '近六个月交付数量',bottom:'2%',right:'35%'},
+                                title: {text: 'Delivered airplane orders in last six months',bottom:'2%',right:'35%'},//近六个月交付数量
                                 legend: {},
                                 tooltip: {},
                                 dataset: {
@@ -205,13 +267,13 @@
                                 },
                                 xAxis: [
                                     {
-                                        name:'近六个月',
+                                        name:'Last six months',//近六个月
                                         data:month_list
                                     }
                                 ],
                                 yAxis: [
                                     {
-                                        name:'交付数目（个）'
+                                        name:'Order number(s)'//交付数目（个）
                                     }
                                 ],
                                 // Declare several bar series, each will be mapped
@@ -232,7 +294,7 @@
                     });
             });
 
-        },2500));
+        },6000));
 
         $(setTimeout(function() {
             var query_sql = "SELECT count(ac_cmsn) AS 'number',pel_cplanningeventname,pe_cmanufacturingsite " +
@@ -284,7 +346,7 @@
 
 
                     option3 = {
-                        title: {text: '实时生产状态',bottom:'2%',right:'45%'},
+                        title: {text: 'Current production status',bottom:'2%',right:'45%'},//实时生产状态
                         legend: {},
                         tooltip: {},
                         dataset: {
@@ -292,13 +354,13 @@
                         },
                         xAxis: [
                             {
-                                name:'工序名称',
+                                name:'Working procedures',//工序名称
                                 data:peName_list
                             }
                         ],
                         yAxis: [
                             {
-                                name:'正在装配的数量（架）'
+                                name:'Number(s) in production'//正在装配的数量（架）
                             }
                         ],
                         // Declare several bar series, each will be mapped
@@ -323,7 +385,7 @@
                     });
                 });
             });
-        },5000));
+        },6500));
 
         $(setTimeout(function() {
             var query_sql = "SELECT concat(week,'th week of ',flight_year) as week_of_year,count(week) AS 'number' from(SELECT weekofyear(flight_date) AS week,EXTRACT(YEAR FROM flight_date) AS flight_year FROM tianjin_flight_planning WHERE flight_date > add_months(SYSDATE,-12) AND flight_date <add_months(SYSDATE,-9) GROUP BY week,flight_date ORDER BY week) GROUP BY flight_year,week ORDER BY flight_year,week"
@@ -342,25 +404,25 @@
 
 
                 option4 = {
-                    title: {text: '每周交付工作量',bottom:'2%',right:'45%'},
+                    title: {text: 'Finished delivery processes in last 3 months last year by week',bottom:'2%',right:'45%'},//每周交付工作量
                     tooltip: {},
                     xAxis: [
                         {
-                            name:'全年同期三个月的每周',
+                            name:'Weeks in last 3 months last year',//全年同期三个月的每周
                             type:'category',
                             data: week_of_year_list
                         }
                     ],
                     yAxis: [
                         {
-                            name: '每星期交付完成数量（项）',
+                            name: 'Numbers of delivery processes',//每星期交付完成数量（项）
                             type: 'value'
                         }
                     ],
 
                     series: [
                         {
-                            name:'交付完成量',
+                            name:'Finished delivery processes',//交付完成量
                             type:'bar',
                             barWidth:'50%',
                             data: number_list,
@@ -379,7 +441,7 @@
                     myChart4.resize();
                 });
             });
-        },7500));
+        },8000));
 
     </script>
 @endsection

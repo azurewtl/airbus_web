@@ -4,7 +4,7 @@
 
 <div class="card mb-3">
     <div class="card-header">
-        生产报表
+        Production table
     </div>
     <div class="card-body">
         <div class="input-group">
@@ -23,7 +23,7 @@
                     <option>cstartbaselinedate</option>
             </select>
             
-            <input id="txt-val" type="text" class="form-control" placeholder="搜索值">
+            <input id="txt-val" type="text" class="form-control" placeholder="Value">
             <div class="input-group-append">
                 <span class="input-group-text" id="btn-search"> <i class="fa fa-search"></i></span>
             </div>
@@ -33,7 +33,7 @@
 
 <div class="card mb-3">
     <div class="card-header">
-        查询结果
+        Results
     </div>
     <div class="table-responsive">
         <table id="table_1" class="table display nowrap">

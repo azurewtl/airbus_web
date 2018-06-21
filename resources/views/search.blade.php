@@ -8,13 +8,13 @@
 		        {{ session('message') }}
 		    </div>
 		@endif
-	  	<h1>文档检索</h1>
+	  	<h1>Document retrieval</h1><!--文档检索-->
 	  
 	  	<form action="/search" method="GET">
             <div class="input-group mb-3">
-                <input type="text" class="form-control" id="q" name="q" placeholder="关键字" value="{{$query}}" required autofocus>
+                <input type="text" class="form-control" id="q" name="q" placeholder="Key words" value="{{$query}}" required autofocus><!--关键字-->
                 <div class="input-group-append">
-                    <button class="btn btn-dark" type="submit">搜索</button>
+                    <button class="btn btn-dark" type="submit">Search</button><!--搜索-->
                 </div>
             </div>
 		</form>
@@ -24,7 +24,7 @@
 <div class="row">
 	<div class="col-12">
     @if(!is_null($query))
-    <p>共返回检索结果{{$total}}条</p>
+    <p>Total returned results:{{$total}}</p><!--共返回检索结果{{$total}}条-->
     @endif
     </div>
 </div>
@@ -33,9 +33,9 @@
 <nav>
     <ul class="pagination">
         @if($page > 1)
-            <li class="page-item"><a class="page-link" href="{{url('search?q='.$query.'&size='.$size.'&page='.($page-1))}}">上一页<a></li>
+            <li class="page-item"><a class="page-link" href="{{url('search?q='.$query.'&size='.$size.'&page='.($page-1))}}">Previous page<a></li><!--上一页-->
         @else
-            <li class="page-item disabled"><a class="page-link" href="#">上一页<a></li>
+            <li class="page-item disabled"><a class="page-link" href="#">Previous page<a></li><!--上一页-->
         @endif
 
         @for($i = $page_min; $i <= $page_max; $i++)
@@ -49,9 +49,9 @@
         @endfor
 
         @if($page < $total_page)
-            <li class="page-item"><a class="page-link" href="{{url('search?q='.$query.'&size='.$size.'&page='.($page+1))}}">下一页<a></li>
+            <li class="page-item"><a class="page-link" href="{{url('search?q='.$query.'&size='.$size.'&page='.($page+1))}}">Next Page<a></li><!--下一页-->
         @else
-            <li class="page-item disabled"><a class="page-link" href="#">下一页<a></li>
+            <li class="page-item disabled"><a class="page-link" href="#">Next Page<a></li><!--下一页-->
         @endif
     </ul>
 </nav>
