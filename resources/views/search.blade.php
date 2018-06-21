@@ -8,7 +8,7 @@
 		        {{ session('message') }}
 		    </div>
 		@endif
-	  	<h1>Document retrieval</h1><!--文档检索-->
+	  	<h1>Document Search</h1><!--文档检索-->
 	  
 	  	<form action="/search" method="GET">
             <div class="input-group mb-3">

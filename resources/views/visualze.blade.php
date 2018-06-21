@@ -9,7 +9,7 @@
                     <i class="fa fa-plane" style="font-size:85px"></i>
                 </div>
                 <div class="media-body media-right">
-                    <h2 class="card-text">Planes in production last month:</h3>
+                    <h2 class="card-text">Work-in-process aircraft last month:</h3>
                     <h2 class="card-text" id="plane_in_production"></h2>
                 </div>
             </div>
@@ -35,7 +35,7 @@
                     <span><i class="fa fa-calendar-check-o" style="font-size:85px"></i></span>
                 </div>
                 <div class="media-body media-text-right">
-                    <h2 class="card-text">Number of finished orders last month: </h2>
+                    <h2 class="card-text">Number of delivered orders last month: </h2>
                     <h2 class="card-text" id="finished_order"></h2>
                 </div>
             </div>
@@ -158,7 +158,7 @@
 
 
                             option = {
-                                title: {text: 'New airplane orders in last six months',bottom:'2%',right:'35%'},//近六个月开工数量
+                                title: {text: 'New aircraft orders in last six months',bottom:'2%',right:'35%'},//近六个月开工数量
                                 legend: {},
                                 tooltip: {},
                                 dataset: {
@@ -259,7 +259,7 @@
 
 
                             option2 = {
-                                title: {text: 'Delivered airplane orders in last six months',bottom:'2%',right:'35%'},//近六个月交付数量
+                                title: {text: 'Delivered aircraft orders in last six months',bottom:'2%',right:'35%'},//近六个月交付数量
                                 legend: {},
                                 tooltip: {},
                                 dataset: {
@@ -404,7 +404,7 @@
 
 
                 option4 = {
-                    title: {text: 'Finished delivery processes in last 3 months last year by week',bottom:'2%',right:'45%'},//每周交付工作量
+                    title: {text: 'Weekly inspections of finished orders in last 3 months last year',bottom:'2%',right:'45%'},//每周交付工作量
                     tooltip: {},
                     xAxis: [
                         {
@@ -415,14 +415,14 @@
                     ],
                     yAxis: [
                         {
-                            name: 'Numbers of delivery processes',//每星期交付完成数量（项）
+                            name: 'Numbers of inspections',//每星期交付完成数量（项）
                             type: 'value'
                         }
                     ],
 
                     series: [
                         {
-                            name:'Finished delivery processes',//交付完成量
+                            name:'Inspections of finished orders',//交付完成量
                             type:'bar',
                             barWidth:'50%',
                             data: number_list,
