@@ -3,40 +3,40 @@
 @section('content')
 <div class="row">
     <div class="col-md-4  col-xs-12">
-        <div class="card bg-light mb-3 text-center" style="hight:400px">
+        <div class="card bg-light mb-3 text-center" style="height:100%">
             <div class="media">
                 <div class="media-left media-middle">
                     <i class="fa fa-plane" style="font-size:85px"></i>
                 </div>
                 <div class="media-body media-right">
                     <h2 class="card-text">Work-in-process aircraft last month:</h3>
-                    <h2 class="card-text" id="plane_in_production"></h2>
+                    <h2 class="card-text" id="plane_in_production" style="height:38px"></h2>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-md-4  col-xs-12">
-        <div class="card bg-light mb-3 text-center" style="hight:300px">
+        <div class="card bg-light mb-3 text-center" style="height:100%">
             <div class="media">
                 <div class="media-left meida media-middle">
                     <span><i class="fa fa-calendar-plus-o" style="font-size:85px"></i></span>
                 </div>
                 <div class="media-body media-text-right">
                     <h2 class="card-text">Number of new orders last month: </h2>
-                    <h2 class="card-text" id="new_order"></h2>
+                    <h2 class="card-text" id="new_order" style="height:38px"></h2>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-md-4  col-xs-12">
-        <div class="card bg-light mb-3 text-center">
+        <div class="card bg-light mb-3 text-center" style="height:100%">
             <div class="media">
                 <div class="media-left meida media-middle">
                     <span><i class="fa fa-calendar-check-o" style="font-size:85px"></i></span>
                 </div>
                 <div class="media-body media-text-right">
                     <h2 class="card-text">Number of delivered orders last month: </h2>
-                    <h2 class="card-text" id="finished_order"></h2>
+                    <h2 class="card-text" id="finished_order" style="height:38px"></h2>
                 </div>
             </div>
         </div>
@@ -388,7 +388,7 @@
         },6500));
 
         $(setTimeout(function() {
-            var query_sql = "SELECT concat(week,'th week of ',flight_year) as week_of_year,count(week) AS 'number' from(SELECT weekofyear(flight_date) AS week,EXTRACT(YEAR FROM flight_date) AS flight_year FROM tianjin_flight_planning WHERE flight_date > add_months(SYSDATE,-12) AND flight_date <add_months(SYSDATE,-9) GROUP BY week,flight_date ORDER BY week) GROUP BY flight_year,week ORDER BY flight_year,week"
+            var query_sql = "SELECT concat(week,'th week of ',flight_year) as week_of_year,count(week) AS 'number' from(SELECT weekofyear(flight_date) AS week,EXTRACT(YEAR FROM flight_date) AS flight_year FROM tianjin_flight_planning WHERE flight_date > add_months(SYSDATE,-15) AND flight_date <add_months(SYSDATE,-12) GROUP BY week,flight_date ORDER BY week) GROUP BY flight_year,week ORDER BY flight_year,week"
             $.get("../index.php/inceptor?query=" + query_sql,function(response) {
                 var data = JSON.parse(response);
                 var week_of_year_list = [];
