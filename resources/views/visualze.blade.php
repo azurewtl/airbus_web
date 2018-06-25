@@ -158,7 +158,7 @@
 
 
                             option = {
-                                title: {text: 'New aircraft orders in last six months',bottom:'2%',right:'35%'},//近六个月开工数量
+                                title: {text: 'New aircraft orders in last six months',bottom:'2%',left:'center'},//近六个月开工数量
                                 legend: {},
                                 tooltip: {},
                                 dataset: {
@@ -259,7 +259,7 @@
 
 
                             option2 = {
-                                title: {text: 'Delivered aircraft orders in last six months',bottom:'2%',right:'35%'},//近六个月交付数量
+                                title: {text: 'Delivered aircraft orders in last six months',bottom:'2%',left:'center'},//近六个月交付数量
                                 legend: {},
                                 tooltip: {},
                                 dataset: {
@@ -346,7 +346,7 @@
 
 
                     option3 = {
-                        title: {text: 'Current production status',bottom:'2%',right:'45%'},//实时生产状态
+                        title: {text: 'Current production status',bottom:'2%',left:'center'},//实时生产状态
                         legend: {},
                         tooltip: {},
                         dataset: {
@@ -404,7 +404,7 @@
 
 
                 option4 = {
-                    title: {text: 'Weekly inspections of finished orders in last 3 months last year',bottom:'2%',right:'45%'},//每周交付工作量
+                    title: {text: 'Weekly inspections of finished orders in last 3 months last year',bottom:'2%',left:'center'},//每周交付工作量
                     tooltip: {},
                     xAxis: [
                         {
