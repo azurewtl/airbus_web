@@ -9,7 +9,7 @@
                     <i class="fa fa-plane" style="font-size:85px"></i>
                 </div>
                 <div class="media-body media-right">
-                    <h2 class="card-text">Work-in-process aircraft last month:</h3>
+                    <h2 class="card-text">Number of work-in-process aircraft:</h3>
                     <h2 class="card-text" id="plane_in_production" style="height:38px"></h2>
                 </div>
             </div>
@@ -79,7 +79,7 @@
         });
 
         $(setTimeout(function() {
-            var query_sql = "SELECT count(ac_cmsn) AS new_order FROM apc_jaguar_bi_orc WHERE actual_start_date < SYSDATE AND actual_start_date > add_months(SYSDATE,-1)"
+            var query_sql = "SELECT count(distinct ac_cmsn) AS new_order FROM apc_jaguar_bi_orc WHERE actual_start_date < SYSDATE AND actual_start_date > add_months(SYSDATE,-1)"
             $.get("../index.php/inceptor?query=" + query_sql,function(response) {
                 var new_order = JSON.parse(response);
                 document.getElementById("new_order").innerHTML = new_order[0].new_order;
@@ -87,7 +87,7 @@
         },1000));
 
         $(setTimeout(function() {
-            var query_sql = "SELECT count(ac_cmsn) AS finished_order FROM apc_jaguar_bi_orc WHERE actual_end_date < SYSDATE AND actual_end_date > add_months(SYSDATE,-1)"
+            var query_sql = "SELECT count(distinct ac_cmsn) AS finished_order FROM apc_jaguar_bi_orc WHERE actual_end_date < SYSDATE AND actual_end_date > add_months(SYSDATE,-1)"
             $.get("../index.php/inceptor?query=" + query_sql,function(response) {
                 finished_order= JSON.parse(response);
                 document.getElementById("finished_order").innerHTML = finished_order[0].finished_order;
